@@ -7,11 +7,7 @@ class MainPage(webapp2.RequestHandler):
 	
 	def get(self):
 
-		template_values = {'fish': 5}
-
-		template_values['dog'] = 3
-		template_values['title'] = 'Home'
-		template_values['today'] = datetime.date.today().isoformat()
+		template_values = {'title': 'Home', 'today': datetime.date.today().isoformat()}
 
 		self.response.out.write(
 			template.render('form.html', template_values)
