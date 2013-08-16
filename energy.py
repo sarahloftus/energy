@@ -14,7 +14,7 @@ class MainPage(webapp2.RequestHandler):
 		template_values['today'] = datetime.date.today().isoformat()
 
 		self.response.out.write(
-			template.render('/home/sarah/energy/form.html', template_values)
+			template.render('form.html', template_values)
 			)
 
 class OutputPage(webapp2.RequestHandler):
@@ -29,7 +29,7 @@ class OutputPage(webapp2.RequestHandler):
 		entry.put()
 
 		self.response.out.write(
-			template.render('/home/sarah/energy/output.html', post_values)
+			template.render('output.html', post_values)
 			)
 
 application = webapp2.WSGIApplication([
