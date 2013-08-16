@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<h2>Form</h2>
+		
+		<form action="/output" method="post">
+
+		<p>
+		<label>Units (kWh)
+		<input type="number" step="any" name="units" required />
+		</label>
+		</p>
+
+		<p>
+		<label>Date
+		<input type="date" name="date" value="{{ today }}" required />
+		</label>
+		</p>
+
+		<p>
+		<input type="submit" />
+		</p>
+		</form>
+	</body>
+</html>
