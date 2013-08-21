@@ -8,7 +8,9 @@ class MainPage(webapp2.RequestHandler):
 	
 	def get(self):
 
-		template_values = {'title': 'Home', 'today': datetime.date.today().isoformat(), 'entries': models.Entry.query()}
+		entries = models.Entry.query().order(models.Entry.date)
+
+		template_values = {'title': 'Home', 'today': datetime.date.today().isoformat(), 'entries':entries }
 
 		self.response.out.write(
 			template.render('form.html', template_values)

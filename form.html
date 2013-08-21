@@ -5,8 +5,28 @@
 		<meta name="viewport" content="width=device-width">
 		<title>{{ title }}</title>
 		<link rel="stylesheet" href="/static/css/bootstrap.css" media="screen"/>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable(
+				[
+					['Date', 'Units'],
+					{% for entry in entries %}
+					['{{ entry.date }}', {{ entry.units }}],
+					{% endfor %}
+				]
+				);
+
+				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				chart.draw(data, {});
+			}
+		</script>
 	</head>
 	<body>
+
 		<div id="form">
 		<h2>Form</h2>
 		
@@ -30,15 +50,7 @@
 		</form>
 		</div>
 
-		<div id="output">
-		<h2>Output</h2>
-
-		<ul>
-		{% for entry in entries %}
-			<li>{{ entry.date }} - {{ entry.units }}</li>
-		{% endfor %}
-		</ul>
-		</div>
+		<div id="chart_div" style="width: 450px; height: 250px;"></div>
 
 	</body>
 </html>
